@@ -8,7 +8,7 @@
 
 ### Pre-Setup
 
-- Clone repository:  `git clone ssh://git@git.wayarmy.net:401/devops/demo.git`
+- Clone repository:  `git clone ssh://git@git.wayarmy.net:401/devops/practice.git`
 
 ### Pre-practise
 
