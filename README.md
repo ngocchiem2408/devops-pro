@@ -1,8 +1,6 @@
-[![pipeline status](https://git.wayarmy.net/devops/demo/badges/master/pipeline.svg)](https://git.wayarmy.net/devops/demo/commits/master)
+[![pipeline status](https://git.wayarmy.net/devops/practice/badges/develop/pipeline.svg)](https://git.wayarmy.net/devops/practice/commits/develop)[![coverage report](https://git.wayarmy.net/devops/practice/badges/develop/coverage.svg)](https://git.wayarmy.net/devops/practice/commits/develop)
 
-[![coverage report](https://git.wayarmy.net/devops/demo/badges/master/coverage.svg)](https://git.wayarmy.net/devops/demo/commits/master)
-
-# DevOps Demo
+# DevOps Practice
 
 > This project for devops course demo and practise
 
@@ -10,86 +8,20 @@
 
 - Clone repository:  `git clone ssh://git@git.wayarmy.net:401/devops/practice.git`
 
-### Pre-practise
+### Follow new 6 features carefully:
 
-- Sign-up new account on gitlab
+- [Feature 1](Practice/feature-1.md)
 
-- Fork this project to personal project
+- [Feature 2](Practice/feature-2.md)
 
-- Enable gitlab runner in project's settings (If the CI/CD pipeline is pending)
+- [Feature 3](Practice/feature-3.md)
 
-### Practise 1: Write a new gitlab-ci file
+- [Feature 4](Practice/feature-4.md)
 
-- Edit file: `.gitlab-ci.yml` and change content to:
+- [Feature 5](Practice/feature-5.md)
 
-```
-stages:
-  - test
-  - deploy
+- [Feature 6](Practice/feature-6.md)
 
-unit_test:
-  stage: test
-  script:
-    - phpunit -v -c phpunit.xml --coverage-text --colors=never
-```
+### When everything is done, follow up the new practice
 
-- Add new deploy step, allow only deploy on master branch:
-
-```
-stages:
-  - test
-  - deploy
-
-unit_test:
-  stage: test
-  script:
-    - phpunit --bootstrap autoload.php .
-
-deploy_to_production:
-  stage: deploy
-  script:
-    - ./deploy production
-  when: on_success
-  environment:
-    name: production
-    url: http://demo.wayarmy.net
-  only:
-    - master
-```
-
-- Add new deployment, with new staging environment for reviewer:
-
-```
-stages:
-  - test
-  - deploy
-
-unit_test:
-  stage: test
-  script:
-    - phpunit --bootstrap autoload.php .
-
-deploy_to_staging:
-  stage: deploy
-  script:
-    - ./deploy staging
-  when: on_success
-  environment:
-    name: staging
-    url: http://staging.wayarmy.net
-  only:
-    - staging
-
-deploy_to_production:
-  stage: deploy
-  script:
-    - ./deploy production
-  when: on_success
-  environment:
-    name: production
-    url: http://demo.wayarmy.net
-  only:
-    - master
-```
-
-- Check out new branch: `staging`, watch CI-CD pipelines again
+- [Practice 2](Practice/Practice2.md)
