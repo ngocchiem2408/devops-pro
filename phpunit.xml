@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!-- see http://www.phpunit.de/wiki/Documentation -->
+<phpunit bootstrap="autoload.php">
+  <testsuites>
+      <testsuite name="Example">
+          <file>./tests/ProductRepositoryTest.php</file>
+      </testsuite>
+  </testsuites>
+
+  <filter>
+    <whitelist>
+      <directory suffix=".php">./api</directory>
+      <directory suffix=".php">./storage</directory>
+    </whitelist>
+  </filter>
+</phpunit>

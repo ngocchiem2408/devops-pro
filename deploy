@@ -1,0 +1,56 @@
+#!/bin/bash +x
+set -eo pipefail
+
+deploy_production() {
+  echo ""
+  echo "<----SHUTDOWN WEBSERVER---->"
+  docker-compose down 2>1
+  echo "...Success"
+
+  echo ""
+  echo "<----BUILD NEW DOCKER IMAGE---->"
+  docker-compose build php-simple-web 2>1
+  echo "...Success"
+
+  echo ""
+  echo "<----START NEW WEBSERVER---->"
+  docker-compose up -d 2>1
+  echo "...Success"
+
+  echo ""
+  echo "<----DEPLOY TO PRODUCTION SUCCESS---->"
+
+  echo "YOUR PRODUCTION ENVIRONMENT URL: http://demo.wayarmy.net:3000"
+}
+
+deploy_staging() {
+  cd staging
+  echo ""
+  echo "<----SHUTDOWN WEBSERVER---->"
+  docker-compose down 2>1
+  echo "...Success"
+
+  echo ""
+  echo "<----BUILD NEW DOCKER IMAGE---->"
+  docker-compose build php-simple-web2>1
+  echo "...Success"
+
+  echo ""
+  echo "<----START NEW WEBSERVER---->"
+  docker-compose up -d 2>1
+  echo "...Success"
+
+  echo ""
+  echo "<----DEPLOY TO PRODUCTION SUCCESS---->"
+
+  echo "YOUR STAGING ENVIRONMENT URL: http://demo.wayarmy.net:5000"
+}
+
+if [[ $1 == "production" ]]; then
+  deploy_production
+elif [[ $1 == "staging" ]]; then
+  deploy_staging
+else
+  echo "Don't support environment "$1
+  exit 1
+fi

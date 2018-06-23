@@ -1,0 +1,39 @@
+stages:
+  - test
+  - deploy
+
+unit_test:
+  stage: test
+  script:
+    - phpunit -v -c phpunit.xml --coverage-text --colors=never
+
+report_to_sonarqube:
+  stage: test
+  script:
+    - sonar-scanner
+  when: on_success
+  only:
+    - develop
+    - master
+
+deploy_to_staging:
+  stage: deploy
+  script:
+    - ./deploy staging
+  when: on_success
+  environment:
+    name: staging
+    url: http://demo.wayarmy.net:5000
+  only:
+    - release
+
+deploy_to_production:
+  stage: deploy
+  script:
+    - ./deploy production
+  when: on_success
+  environment:
+    name: production
+    url: http://demo.wayarmy.net:3000
+  only:
+    - master
