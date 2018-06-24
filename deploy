@@ -32,7 +32,7 @@ deploy_staging() {
 
   echo ""
   echo "<----BUILD NEW DOCKER IMAGE---->"
-  docker-compose build php-simple-web2>1
+  docker-compose build php-simple-web 2>1
   echo "...Success"
 
   echo ""
