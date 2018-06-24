@@ -1,12 +1,12 @@
 version: '3'
 services:
   php-simple-web:
-    container_name: php-simple-web
+    container_name: php-simple-web-staging
     build: ..
     ports:
       - "${STAGING_PORT}:80"
   database:
-    container_name: database
+    container_name: database-staging
     image: mysql:latest
     expose:
       - "3306"
